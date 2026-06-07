@@ -1,0 +1,26 @@
+name: Build Windows GUI
+on: [push, workflow_dispatch]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install GTK3 via vcpkg
+        run: |
+          vcpkg integrate install
+          vcpkg install gtk3:x64-windows
+
+      - name: Build Release EXE
+        run: cargo build --release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: arnis-windows-gui
+          path: target/release/arnis.exegit add .github/workflows/windows_gui.yml
