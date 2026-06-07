@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: arnis-windows-gui
-          path: target/release/arnis.exegit add .github/workflows/windows_gui.yml
+          path: target/release/arnis.exe
